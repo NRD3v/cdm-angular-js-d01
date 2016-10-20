@@ -13,7 +13,10 @@
         app.controller('ExerciceController', function ($scope) {
             $scope.showModelVar = function () {
                 $scope.modelVar = "Le contrôleur m'appelle";
-            }
+            };
+            $scope.changeModelVar = function () {
+                $scope.modelVar = "Variable changée";
+            };
         });
     </script>
     <title>Angular ex. 7</title>
@@ -22,6 +25,7 @@
     <div class="container" ng-controller="ExerciceController">
         <div class="row">
             <button ng-click="showModelVar()">Voir la variable</button>
+            <button ng-click="changeModelVar()">Changer la valeur de la variable</button>
 
             <p>{{ modelVar }}</p>
         </div>
