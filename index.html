@@ -11,7 +11,7 @@
         app.controller('ExerciceController', function ($scope) {
             $scope.isHidden = false;
             $scope.clickMe = function () {
-                return $scope.isHidden = true;
+                $scope.isHidden = !$scope.isHidden ;
             }
         });
     </script>
