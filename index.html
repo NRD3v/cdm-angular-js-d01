@@ -7,17 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="node_modules/angular/angular.min.js"></script>
     <script type="text/javascript">
-        var app = angular.module('exercice3', []);
-        app.controller('Exercice3Controller', function ($scope) {
+        var app = angular.module('exercice', []);
+        app.controller('ExerciceController', function ($scope) {
+            $scope.isHidden = false;
             $scope.clickMe = function () {
-                alert('Click');
+                return $scope.isHidden = true;
             }
         });
     </script>
-    <title>Angular ex. 1</title>
+    <title>Angular ex. 3</title>
 </head>
-<body ng-app="exercice3">
-    <div class="container" ng-controller="Exercice3Controller">
+<body ng-app="exercice">
+    <div class="container" ng-controller="ExerciceController">
+        <p ng-show="!isHidden">A cacher</p>
         <button ng-click="clickMe()">Click me !</button>
     </div>
 </body>
