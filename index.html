@@ -11,9 +11,8 @@
     <script type="text/javascript">
         var app = angular.module('exercice', []);
         app.controller('ExerciceController', function ($scope) {
-            $scope.modelVar = '';
-            $scope.showValue = function () {
-                $scope.modelVar = "J'assigne une valeur à une variable";
+            $scope.showModelVar = function () {
+                $scope.modelVar = "Le contrôleur m'appelle";
             }
         });
     </script>
@@ -22,11 +21,9 @@
 <body ng-app="exercice">
     <div class="container" ng-controller="ExerciceController">
         <div class="row">
-            <div ng-model="modelVar">
-                <input type="text" ng-model="modelVar">
-                <button ng-click="showValue()">Soumettre</button>
-                <p>{{ modelVar }}</p>
-            </div>
+            <button ng-click="showModelVar()">Voir la variable</button>
+
+            <p>{{ modelVar }}</p>
         </div>
     </div>
 </body>
