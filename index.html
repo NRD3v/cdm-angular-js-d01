@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('exercice1', []);
+        app.controller('Exercice1Controller', function ($scope) {
+            $scope.test = 'Test'
+        });
+    </script>
+    <title>Angular ex. 1</title>
+</head>
+<body ng-app="exercice1">
+    <div class="container" ng-controller="Exercice1Controller">
+        <h1>{{ test }}</h1>
+    </div>
+</body>
+</html>
