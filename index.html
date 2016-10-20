@@ -7,16 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="node_modules/angular/angular.min.js"></script>
     <script type="text/javascript">
-        var app = angular.module('exercice1', []);
-        app.controller('Exercice1Controller', function ($scope) {
-            $scope.test = 'Test'
+        var app = angular.module('exercice3', []);
+        app.controller('Exercice3Controller', function ($scope) {
+            $scope.clickMe = function () {
+                alert('Click');
+            }
         });
     </script>
     <title>Angular ex. 1</title>
 </head>
-<body ng-app="exercice1">
-    <div class="container" ng-controller="Exercice1Controller">
-        <h1>{{ test }}</h1>
+<body ng-app="exercice3">
+    <div class="container" ng-controller="Exercice3Controller">
+        <button ng-click="clickMe()">Click me !</button>
     </div>
 </body>
 </html>
