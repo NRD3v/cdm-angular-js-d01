@@ -7,18 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="node_modules/angular/angular.min.js"></script>
     <script type="text/javascript">
-        var app = angular.module('exercice3', []);
-        app.controller('Exercice3Controller', function ($scope) {
-            $scope.clickMe = function () {
-                alert('Click');
-            }
+        var app = angular.module('exercice', []);
+        app.controller('ExerciceController', function ($scope) {
+            $scope.filteredVar = 'Je suis une variable filtrée en majuscules'
         });
     </script>
-    <title>Angular ex. 1</title>
+    <title>Angular ex. 4</title>
 </head>
-<body ng-app="exercice3">
-    <div class="container" ng-controller="Exercice3Controller">
-        <button ng-click="clickMe()">Click me !</button>
+<body ng-app="exercice">
+    <div class="container" ng-controller="ExerciceController">
+
+        <p>{{ filteredVar | uppercase }}</p>
+
     </div>
 </body>
 </html>
