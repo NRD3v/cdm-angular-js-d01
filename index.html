@@ -10,24 +10,24 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var app = angular.module('exercice', []);
-        app.controller('ExerciceController', function ($scope) {
-            $scope.showModelVar = function () {
-                $scope.modelVar = "Le contrôleur m'appelle";
-            };
-            $scope.changeModelVar = function () {
-                $scope.modelVar = "Variable changée";
-            };
+        app.controller('ExerciceController1', function ($scope) {
+            $scope.variable = 'Var du CTRL 1';
+
+        });
+        app.controller('ExerciceController2', function ($scope) {
+            $scope.variable = 'Autre Var du CTRL 2';
         });
     </script>
-    <title>Angular ex. 7</title>
 </head>
 <body ng-app="exercice">
-    <div class="container" ng-controller="ExerciceController">
-        <div class="row">
-            <button ng-click="showModelVar()">Voir la variable</button>
-            <button ng-click="changeModelVar()">Changer la valeur de la variable</button>
+    <div class="container">
+        <div class="row" ng-controller="ExerciceController1">
 
-            <p>{{ modelVar }}</p>
+            <span>{{ variable }}</span>
+
+            <div class="row" ng-controller="ExerciceController2">
+                <span>{{ variable }}</span>
+            </div>
         </div>
     </div>
 </body>
