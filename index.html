@@ -7,12 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var app = angular.module('exercice', []);
         app.controller('ExerciceController', function ($scope) {
-            $scope.incrementableVar = 0;
-            $scope.incrementation = function () {
-                $scope.incrementableVar = $scope.incrementableVar + 1;
+            $scope.modelVar = '';
+            $scope.showValue = function () {
+                $scope.modelVar = "J'assigne une valeur à une variable";
             }
         });
     </script>
@@ -21,10 +22,12 @@
 <body ng-app="exercice">
     <div class="container" ng-controller="ExerciceController">
         <div class="row">
-            <p>{{ incrementableVar }}</p>
-            <button ng-click="incrementation()">Incrémentation</button>
+            <div ng-model="modelVar">
+                <input type="text" ng-model="modelVar">
+                <button ng-click="showValue()">Soumettre</button>
+                <p>{{ modelVar }}</p>
+            </div>
         </div>
     </div>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
