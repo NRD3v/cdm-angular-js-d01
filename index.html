@@ -10,19 +10,19 @@
     <script type="text/javascript">
         var app = angular.module('exercice', []);
         app.controller('ExerciceController', function ($scope) {
-            $scope.isHidden = false;
-            $scope.clickMe = function () {
-                $scope.isHidden = !$scope.isHidden ;
+            $scope.incrementableVar = 0;
+            $scope.incrementation = function () {
+                $scope.incrementableVar = $scope.incrementableVar + 1;
             }
         });
     </script>
-    <title>Angular ex. 3</title>
+    <title>Angular ex. 7</title>
 </head>
 <body ng-app="exercice">
     <div class="container" ng-controller="ExerciceController">
         <div class="row">
-            <button ng-show="!isHidden" ng-click="clickMe()" class="alert alert-success">NG SHOW</button>
-            <button ng-hide="!isHidden" ng-click="clickMe()" class="alert alert-danger">NG HIDE</button>
+            <p>{{ incrementableVar }}</p>
+            <button ng-click="incrementation()">Incrémentation</button>
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
