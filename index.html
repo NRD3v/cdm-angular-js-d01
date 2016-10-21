@@ -10,25 +10,48 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var app = angular.module('exercice', []);
-        app.controller('ExerciceController1', function ($scope) {
-            $scope.variable = 'Var du CTRL 1';
 
+        app.service('exerciceService', function () {
+            this.variable = 'Var du service';
         });
-        app.controller('ExerciceController2', function ($scope) {
-            $scope.variable = 'Autre Var du CTRL 2';
+
+        app.controller('ExerciceController1', function ($scope, exerciceService) {
+            $scope.newVar = exerciceService.variable;
+        });
+
+        app.controller('ExerciceController2', function ($scope, exerciceService) {
+            $scope.newVar = exerciceService.variable;
         });
     </script>
 </head>
 <body ng-app="exercice">
-    <div class="container">
-        <div class="row" ng-controller="ExerciceController1">
+<div class="container col-lg-6 col-lg-offset-3">
 
-            <span>{{ variable }}</span>
+    <div class="row text-center">
+        <h1>ANGULAR JS</h1>
+    </div>
 
-            <div class="row" ng-controller="ExerciceController2">
-                <span>{{ variable }}</span>
-            </div>
+    <br>
+
+    <div class="row" ng-controller="ExerciceController1">
+        <div class="form-group">
+            <input type="text" ng-model="newVar" class="form-control">
+        </div>
+        <div class="text-center">
+            <span>{{ newVar }}</span>
         </div>
     </div>
+
+    <br>
+
+    <div class="row" ng-controller="ExerciceController2">
+        <div class="form-group">
+            <input type="text" ng-model="newVar" class="form-control">
+        </div>
+        <div class="text-center">
+            <span>{{ newVar }}</span>
+        </div>
+    </div>
+</div>
 </body>
 </html>
