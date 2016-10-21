@@ -12,18 +12,22 @@
         var app = angular.module('exercice', []);
 
         app.controller('ExerciceController', function ($scope) {
-            $scope.newVar = '';
+            $scope.numbers = [1, 2, 3, 4, 5];
         });
 
-        app.filter("reverse", function () {
-            return function(input, bool) {
-                input = input.split("").reverse().join("");
-                return bool == true ? input.toUpperCase() : input;
+        app.filter('exclude', function () {
+            return function(numbers, valueExcluded) {
+                for (var i=0; i <= numbers.length; i++) {
+                    if (numbers[i] == valueExcluded) {
+                        numbers.splice(i, 1);
+                    }
+                }
+                return numbers;
             };
         });
     </script>
 </head>
-<body ng-app="exercice">
+<body ng-app="exercice" ng-controller="ExerciceController">
 <div class="container col-lg-6 col-lg-offset-3">
 
     <div class="row text-center">
@@ -32,15 +36,11 @@
 
     <hr>
 
-    <div class="row" ng-controller="ExerciceController">
-        <div class="form-group">
-            <input type="text" ng-model="newVar" class="form-control">
-        </div>
-        <div class="text-center">
-            <span>{{ newVar | reverse:true }}</span>
-
-        </div>
-    </div>
+    <ul ng-repeat="number in numbers | exclude:3 ">
+        <li>
+            {{ number }}
+        </li>
+    </ul>
 </div>
 </body>
 </html>
