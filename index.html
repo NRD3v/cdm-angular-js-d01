@@ -11,16 +11,8 @@
     <script type="text/javascript">
         var app = angular.module('exercice', []);
 
-        app.service('exerciceService', function () {
-            this.variable = 'Var du service';
-        });
-
-        app.controller('ExerciceController1', function ($scope, exerciceService) {
-            $scope.newVar = exerciceService.variable;
-        });
-
-        app.controller('ExerciceController2', function ($scope, exerciceService) {
-            $scope.newVar = exerciceService.variable;
+        app.controller('ExerciceController', function ($scope) {
+            $scope.newVar = 10;
         });
     </script>
 </head>
@@ -33,23 +25,12 @@
 
     <br>
 
-    <div class="row" ng-controller="ExerciceController1">
+    <div class="row" ng-controller="ExerciceController">
         <div class="form-group">
             <input type="text" ng-model="newVar" class="form-control">
         </div>
         <div class="text-center">
-            <span>{{ newVar }}</span>
-        </div>
-    </div>
-
-    <br>
-
-    <div class="row" ng-controller="ExerciceController2">
-        <div class="form-group">
-            <input type="text" ng-model="newVar" class="form-control">
-        </div>
-        <div class="text-center">
-            <span>{{ newVar }}</span>
+            <span>{{ newVar | currency }}</span>
         </div>
     </div>
 </div>
