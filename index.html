@@ -12,18 +12,24 @@
         var app = angular.module('exercice', []);
 
         app.controller('ExerciceController', function ($scope) {
-            $scope.numbers = [1, 2, 3, 4, 5];
+            $scope.names = ['Moi', 'Toi', 'Vous', 'Nous', 'Elles'];
         });
 
         app.filter('exclude', function () {
-            return function(numbers, valueExcluded) {
-                for (var i=0; i <= numbers.length; i++) {
-                    if (numbers[i] == valueExcluded) {
-                        numbers.splice(i, 1);
+            return function(input, valueExcluded) {
+                for (var i=0; i <= input.length; i++) {
+                    if (input[i] == valueExcluded) {
+                        input.splice(i, 1);
                     }
                 }
-                return numbers;
+                return input;
             };
+        });
+
+        app.filter('sortAsc', function () {
+            return function (input) {
+                return input.sort();
+            }
         });
     </script>
 </head>
@@ -36,11 +42,12 @@
 
     <hr>
 
-    <ul ng-repeat="number in numbers | exclude:3 ">
-        <li>
-            {{ number }}
+    <ul class="list-unstyled" ng-repeat="name in names | exclude:'Toi' | sortAsc">
+        <li class="list-inline">
+            {{ name }}
         </li>
     </ul>
+
 </div>
 </body>
 </html>
