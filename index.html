@@ -15,7 +15,7 @@
             $scope.newVar = '';
         });
 
-        app.filter("reverse", function () {
+        app.filter("reverse1", function () {
             return function(input) {
                 var result = "";
                 input = input || "";
@@ -23,6 +23,12 @@
                     result = input.charAt(i) + result;
                 }
                 return result;
+            };
+        });
+
+        app.filter("reverse2", function () {
+            return function(input) {
+                return input.split("").reverse().join("");
             };
         });
     </script>
@@ -41,7 +47,8 @@
             <input type="text" ng-model="newVar" class="form-control">
         </div>
         <div class="text-center">
-            <span>{{ newVar | reverse }}</span>
+            <span>{{ newVar | reverse1 }}</span> <span>{{ newVar | reverse2 }}</span>
+
         </div>
     </div>
 </div>
