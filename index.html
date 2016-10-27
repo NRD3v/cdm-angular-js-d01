@@ -11,43 +11,30 @@
     <script type="text/javascript">
         var app = angular.module('exercice', []);
 
-        app.controller('ExerciceController', function ($scope) {
-            $scope.names = ['Moi', 'Toi', 'Vous', 'Nous', 'Elles'];
-        });
+        app.directive('myOnePieceWidget', function () {
+            return {
+                restrict: 'E',
+                template: '<h1 class="text-center">EfreiTech Rocks!</h1>',
+                link: function (scope, element, attributes) {
+                    element.on('click', function () {
+                        var color = '#';
+                        for (var i = 0; i < 6; i++) {
+                            color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
+                        }
+                        element.children([0]).css('background-color', color);
+                        element.children([0]).backgroundColor = color;
+                    });
 
-        app.filter('exclude', function () {
-            return function(input, valueExcluded) {
-                for (var i=0; i <= input.length; i++) {
-                    if (input[i] == valueExcluded) {
-                        input.splice(i, 1);
-                    }
+                    console.log(scope);
+                    console.log(element);
+                    console.log(attributes);
                 }
-                return input;
-            };
-        });
-
-        app.filter('sortAsc', function () {
-            return function (input) {
-                return input.sort();
             }
         });
     </script>
+    <style></style>
 </head>
-<body ng-app="exercice" ng-controller="ExerciceController">
-<div class="container col-lg-6 col-lg-offset-3">
-
-    <div class="row text-center">
-        <h1>ANGULAR JS</h1>
-    </div>
-
-    <hr>
-
-    <ul class="list-unstyled" ng-repeat="name in names | exclude:'Toi' | sortAsc">
-        <li class="list-inline">
-            {{ name }}
-        </li>
-    </ul>
-
-</div>
+<body ng-app="exercice">
+    <my-one-piece-widget></my-one-piece-widget>
 </body>
 </html>
