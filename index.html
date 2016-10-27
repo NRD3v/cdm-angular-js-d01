@@ -13,7 +13,7 @@
 
         app.directive('myOnePieceWidget', function () {
             return {
-                restrict: 'E',
+                restrict: 'AE',
                 template: '<h1 class="text-center">EfreiTech Rocks!</h1>',
                 link: function (scope, element, attributes) {
                     element.on('click', function () {
@@ -22,7 +22,6 @@
                             color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
                         }
                         element.children([0]).css('background-color', color);
-                        element.children([0]).backgroundColor = color;
                     });
 
                     console.log(scope);
@@ -35,6 +34,7 @@
     <style></style>
 </head>
 <body ng-app="exercice">
+    <div my-one-piece-widget></div>
     <my-one-piece-widget></my-one-piece-widget>
 </body>
 </html>
