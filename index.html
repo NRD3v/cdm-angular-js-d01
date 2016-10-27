@@ -7,14 +7,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/angular/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var app = angular.module('exercice', []);
 
-        app.directive('myOnePieceWidget', function () {
+        app.directive('myFirstOnePieceWidget', function () {
             return {
-                restrict: 'AE',
+                restrict: 'A',
                 template: '<h1 class="text-center">EfreiTech Rocks!</h1>',
+                link: function (scope, element, attributes) {
+                    element.on('click', function () {
+                        var color = '#';
+                        for (var i = 0; i < 6; i++) {
+                            color += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
+                        }
+                        element.children([0]).css('background-color', color);
+                    });
+
+                    console.log(scope);
+                    console.log(element);
+                    console.log(attributes);
+                }
+            }
+        });
+
+        app.directive('mySecondOnePieceWidget', function () {
+            return {
+                restrict: 'E',
+                templateUrl: 'include_angular.html',
                 link: function (scope, element, attributes) {
                     element.on('click', function () {
                         var color = '#';
@@ -34,7 +55,7 @@
     <style></style>
 </head>
 <body ng-app="exercice">
-    <div my-one-piece-widget></div>
-    <my-one-piece-widget></my-one-piece-widget>
+    <div my-first-one-piece-widget></div>
+    <my-second-one-piece-widget></my-second-one-piece-widget>
 </body>
 </html>
