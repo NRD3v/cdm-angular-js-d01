@@ -11,18 +11,22 @@
     <script type="text/javascript">
         var app = angular.module('exercice', []);
 
-        app.directive('myOnePieceWidget', function () {
+        app.directive('myFirstOnePieceWidget', function () {
             return {
                 restrict: 'A',
                 scope: {
-                    data: '=myOnePieceWidget'
+                    data: '@myFirstOnePieceWidget'
                 },
+                template: '<h1 class="text-center">{{ data }}</h1>'
+            }
+        });
+
+        app.directive('mySecondOnePieceWidget', function () {
+            return {
+                restrict: 'A',
                 template: '<h1 class="text-center">{{ data }}</h1>',
                 link: function (scope, element, attributes) {
-                    console.log(attributes.myOnePieceWidget);
-                    console.log(scope);
-                    console.log(element);
-                    console.log(attributes);
+                    scope.data = attributes.mySecondOnePieceWidget;
                 }
             }
         });
@@ -30,6 +34,7 @@
     <style></style>
 </head>
 <body ng-app="exercice">
-    <div my-one-piece-widget="test"></div>
+    <div my-first-one-piece-widget="Test qui marche !"></div>
+    <div my-second-one-piece-widget="Test qui marche !"></div>
 </body>
 </html>
