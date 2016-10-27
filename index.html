@@ -11,22 +11,16 @@
     <script type="text/javascript">
         var app = angular.module('exercice', []);
 
-        app.directive('myFirstOnePieceWidget', function () {
+        app.directive('repeatNtimes', function () {
             return {
-                restrict: 'A',
-                scope: {
-                    data: '@myFirstOnePieceWidget'
-                },
-                template: '<h1 class="text-center">{{ data }}</h1>'
-            }
-        });
+                restrict: 'E',
+                link: function (scope, element, attrs) {
+                    var repeat = attrs.repeat;
+                    var content = element.children();
 
-        app.directive('mySecondOnePieceWidget', function () {
-            return {
-                restrict: 'A',
-                template: '<h1 class="text-center">{{ data }}</h1>',
-                link: function (scope, element, attributes) {
-                    scope.data = attributes.mySecondOnePieceWidget;
+                    for (var i=1; i<repeat; i++) {
+                        element.append(content.clone());
+                    }
                 }
             }
         });
@@ -34,7 +28,9 @@
     <style></style>
 </head>
 <body ng-app="exercice">
-    <div my-first-one-piece-widget="Test qui marche !"></div>
-    <div my-second-one-piece-widget="Test qui marche !"></div>
+    <h1 class="text-center">RÉPÉTITION</h1>
+    <repeat-ntimes repeat="10">
+        <p>Paragraph</p>
+    </repeat-ntimes>
 </body>
 </html>
