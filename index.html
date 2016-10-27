@@ -24,6 +24,20 @@
                 }
             }
         });
+
+        app.directive('repeatNtimesBis', function () {
+            return {
+                restrict: 'E',
+                compile: function (element, attrs) {
+                    var repeatbis = attrs.repeatbis;
+                    var content = element.children();
+
+                    for (var i=1; i<repeatbis; i++) {
+                        element.append(content.clone());
+                    }
+                }
+            }
+        });
     </script>
     <style></style>
 </head>
@@ -32,5 +46,10 @@
     <repeat-ntimes repeat="10">
         <p>Paragraph</p>
     </repeat-ntimes>
+
+    <h1 class="text-center">RÉPÉTITION BIS</h1>
+    <repeat-ntimes-bis repeatbis="10">
+        <p>Paragraph</p>
+    </repeat-ntimes-bis>
 </body>
 </html>
