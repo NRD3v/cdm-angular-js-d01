@@ -13,8 +13,9 @@
 
         app.directive('myOnePieceWidget', function () {
             return {
-                restrict: 'AE',
-                template: '<h1 class="text-center">EfreiTech Rocks!</h1>',
+                restrict: 'E',
+                transclude: true,
+                template: '<h1 class="text-center">EfreiTech Rocks!</h1><div ng-transclude class="text-center"></div>',
                 link: function (scope, element, attributes) {
                     element.on('click', function () {
                         var color = '#';
@@ -34,7 +35,8 @@
     <style></style>
 </head>
 <body ng-app="exercice">
-    <div my-one-piece-widget></div>
-    <my-one-piece-widget></my-one-piece-widget>
+    <my-one-piece-widget>
+        <p>Gomu Gomu nooo!</p>
+    </my-one-piece-widget>
 </body>
 </html>
