@@ -14,11 +14,20 @@
 
             $scope.declaration = "Test 1";
 
+            // SYNTAXE 1
             $timeout(function () {
                 $scope.declaration = "Test 2";
                 $scope.$apply();
             }, 2000);
 
+            // SYNTAXE 2 (Attention : contexte particulier)
+//            $scope.$apply(function () {
+//                setTimeout(function () {
+//                    $scope.declaration = "Test 2";
+//                }, 2000)
+//            });
+
+            // SYNTAXE 3
 //           window.setTimeout(function () {
 //                $scope.declaration = "Test 2";
 //                $scope.$apply();
