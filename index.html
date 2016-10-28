@@ -10,7 +10,19 @@
     <script type="text/javascript">
         var app = angular.module('exercice', []);
 
-        app.controller('FirstCTRL', function ($rootScope, $scope) {
+        app.controller('FirstCTRL', function ($rootScope, $scope, $timeout) {
+
+            $scope.declaration = "Test 1";
+
+            $timeout(function () {
+                $scope.declaration = "Test 2";
+                $scope.$apply();
+            }, 2000);
+
+//           window.setTimeout(function () {
+//                $scope.declaration = "Test 2";
+//                $scope.$apply();
+//            }, 2000);
 
 //            $scope.displayData = function () {
 //                if ($scope.data == 'efreitech') {
@@ -63,6 +75,9 @@
                 </div>
                 <!--<button type="submit" class="btn btn-info col-lg-12">Envoyer</button>-->
             <!--</form>-->
+            <div class="row">
+                <p>{{ declaration }}</p>
+            </div>
         </div>
 
         <div class="row" ng-controller="SecondCTRL">
