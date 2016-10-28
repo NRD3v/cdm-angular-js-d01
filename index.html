@@ -6,95 +6,60 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/underscore/underscore-min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         var app = angular.module('exercice', []);
 
-        app.controller('FirstCTRL', function ($rootScope, $scope, $timeout) {
+        app.controller('Main', function ($scope, APP, Service) {
+            var rawArray = ['first', 'second', 'third', 'fourth', 'fifth'];
 
-            $scope.declaration = "Test 1";
+            $scope.arrayValue = {
+                'first': Service.first(rawArray),
+                'last': Service.last(rawArray),
+                'each': Service.each(rawArray)
+            };
+        });
 
-            // SYNTAXE 1
-            $timeout(function () {
-                $scope.declaration = "Test 2";
-                $scope.$apply();
-            }, 2000);
+        app.constant('APP', {
+            'NAME': 'My App',
+            'VERSION': '1.0.0',
+            'AUTHOR': 'Myself'
+        });
 
-            // SYNTAXE 2 (Attention : contexte particulier)
-//            $scope.$apply(function () {
-//                setTimeout(function () {
-//                    $scope.declaration = "Test 2";
-//                }, 2000)
-//            });
-
-            // SYNTAXE 3
-//           window.setTimeout(function () {
-//                $scope.declaration = "Test 2";
-//                $scope.$apply();
-//            }, 2000);
-
-//            $scope.displayData = function () {
-//                if ($scope.data == 'efreitech') {
-//                    $rootScope.data = $scope.data;
-//                    $scope.$broadcast('OK');
-//                    if ($scope.$broadcast('OK')) {
-//                        alert('OK');
-//                    }
-//                    console.log($scope.$broadcast('OK'));
-//                }
-//            };
-
-            $scope.$on('alert', function () {
-                alert('Alerte');
-            });
-
-            $scope.$watch('data', function (newVal, oldVal) {
-                $rootScope.data = newVal;
-                if (newVal == 'test') {
-                    $scope.$broadcast('alert');
+        app.factory('Service', function () {
+            return {
+                first: function (rawArray) {
+                    return rawArray[0];
+                },
+                last: function (rawArray) {
+                    return rawArray[rawArray.length-1];
                 }
-
-//                if ($scope.data == 'test') {
-//                    $rootScope.data = $scope.data;
-//                    $scope.$broadcast('OK');
-//                    if ($scope.$broadcast('OK')) {
-//                        alert('OK');
-//                    }
-//                    console.log($scope.data);
-//                }
-            });
+                each: function (rawArray) {
+                    return angular.forEach(rawArray, function (value) {
+                        return value;
+                    });
+                }
+            }
         });
 
-        app.controller('SecondCTRL', function () {
-
-        });
-
-        app.controller('ThirdCTRL', function () {
-
-        });
+        // SYNTAXE 2
+//        app.service('Service', function () {
+//            this.init = function () {
+//                return 'Test 1 init';
+//            }
+//        });
     </script>
     <style></style>
 </head>
-<body ng-app="exercice">
-    <div class="container text-center">
-        <div class="row" ng-controller="FirstCTRL">
-            <!--<form class="col-lg-6 col-lg-offset-3" action="" method="post" ng-submit="displayData()">-->
-                <div class="form-group">
-                    <input class="form-control" type="text" ng-model="data">
-                </div>
-                <!--<button type="submit" class="btn btn-info col-lg-12">Envoyer</button>-->
-            <!--</form>-->
-            <div class="row">
-                <p>{{ declaration }}</p>
-            </div>
-        </div>
-
-        <div class="row" ng-controller="SecondCTRL">
-            <p>{{ $root.data }}</p>
-        </div>
-
-        <div class="row" ng-controller="ThirdCTRL">
-            <p>{{ $root.data }}</p>
+<body ng-app="exercice" ng-controller="Main">
+    <div class="container">
+        <div class="row text-center">
+            <p>1) {{ arrayValue.first }}</p>
+            <p>2) {{ arrayValue.last }}</p>
+            <ul class="list-inline">
+                3) <li ng-repeat="value in arrayValue.each">{{ value }}</li>
+            </ul>
         </div>
     </div>
 </body>
