@@ -11,16 +11,44 @@
     <script type="text/javascript">
         var app = angular.module('exercice', []);
 
-        app.directive('repeatNtimes', function () {
+        app.directive('pirates', function () {
             return {
                 restrict: 'E',
-                link: function (scope, element, attrs) {
-                    var repeat = attrs.repeat;
-                    var content = element.children();
+                controller: function ($scope) {
+                    $scope.names = [];
 
-                    for (var i=1; i<repeat; i++) {
-                        element.append(content.clone());
-                    }
+                    this.addLuffy = function () {
+                        $scope.names.push('Luffy')
+                    };
+
+                    this.addChopper = function () {
+                        $scope.names.push('Chopper')
+                    };
+                },
+                link: function (scope, element) {
+                    element.bind("mouseenter", function () {
+                        console.log(scope.names);
+                    })
+                }
+            }
+        });
+
+        app.directive('luffy', function () {
+            return {
+                restrict: 'A',
+                require: 'pirates',
+                link: function (scope, element, attrs, PiratesController) {
+                    PiratesController.addLuffy();
+                }
+            }
+        });
+
+        app.directive('chopper', function () {
+            return {
+                restrict: 'A',
+                require: 'pirates',
+                link: function (scope, element, attrs, PiratesController) {
+                    PiratesController.addChopper();
                 }
             }
         });
@@ -28,9 +56,8 @@
     <style></style>
 </head>
 <body ng-app="exercice">
-    <h1 class="text-center">RÉPÉTITION</h1>
-    <repeat-ntimes repeat="10">
-        <p>Paragraph</p>
-    </repeat-ntimes>
+    <pirates luffy chopper>
+        <h1>Piiiiirates</h1>
+    </pirates>
 </body>
 </html>
